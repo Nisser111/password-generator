@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password generator</title>
+
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css' integrity='sha512-Z0kTB03S7BU+JFU0nw9mjSBcRnZm2Bvm0tzOX9/OuOuz01XQfOpa0w/N9u6Jf2f1OAdegdIPWZ9nIZZ+keEvBw==' crossorigin='anonymous'/>
+</head>
+<body>
+    <header><h1>Password generator</h1></header>
+    <main>
+        <article class="password">
+            <input type="text" spellcheck="false" id="generatedPassField" placeholder="Your password">
+            <section class="buttons-wrapper">
+                <button id="copy"><i class="fa-regular fa-clone"></i></button>
+                <button id="regenerate"><i class="fa-solid fa-arrows-rotate"></i></button>
+            </section>
+        </article>
+
+        <article class="preferences">
+            <h2><i class="fa-solid fa-gears"></i> Preferences</h2>
+            
+            <section class="pass-length">
+                <label for="pass-length__input-number">Password length</label>
+                <input type="number" id="pass-length__input-number" min="1" max="50" value="12">
+                <input type="range" id="pass-length__input-range" min="1" max="50" value="12" step="1">
+            </section>
+            
+            <section class="chars-type">
+                <div class="setting-wrapper">
+                    <input type="checkbox" id="upper">
+                    <label for="upper">upper</label>
+                </div>
+                <div class="setting-wrapper">
+                    <input type="checkbox" id="lower">
+                    <label for="lower">lower</label>
+                </div>
+                <div class="setting-wrapper">
+                    <input type="checkbox" id="symbols">
+                    <label for="symbols">symbols</label>
+                </div>
+                <div class="setting-wrapper">
+                    <input type="checkbox" id="numbers">
+                    <label for="numbers">numbers</label>
+                </div>
+            </section>
+
+            <section class="pass-types">
+                <div class="setting-wrapper">
+                    <input type="radio" name="pass-types" id="easy-to-say">
+                    <label for="easy-to-say">easy to say</label>
+                </div>
+                <div class="setting-wrapper">
+                    <input type="radio" name="pass-types" id="easy-to-read">
+                    <label for="easy-to-read">easy to read</label>
+                </div>
+                <div class="setting-wrapper">
+                    <input type="radio" name="pass-types" id="all-characters">
+                    <label for="all-characters">All characters</label>
+                </div>
+            </section>
+
+        </article>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
