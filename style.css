@@ -159,6 +159,15 @@ article.preferences .setting-wrapper input:checked {
     background: var(--complementaryColor);
 }
 
+article.preferences .setting-wrapper input:disabled {
+    opacity: 0.5;
+}
+
+
 article.preferences .setting-wrapper label {
     cursor: pointer;
+}
+
+article.preferences .setting-wrapper input:disabled label{
+    opacity: 0.5;
 }
