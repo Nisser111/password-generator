@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="EN-en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +13,14 @@
     <main>
         <article class="password">
             <input type="text" spellcheck="false" id="generatedPassField" placeholder="Your password">
+            <div class="strength-bar">
+                <span></span>
+            </div>
             <section class="buttons-wrapper">
-                <button id="copy"><i class="fa-regular fa-clone"></i></button>
+                <button id="copy">
+                    <span>copied</span>
+                    <i class="fa-regular fa-clone"></i>
+                </button>
                 <button id="regenerate"><i class="fa-solid fa-arrows-rotate"></i></button>
             </section>
         </article>

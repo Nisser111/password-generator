@@ -72,6 +72,7 @@ const lengthInput = document.querySelector('section.pass-length input[type="numb
 lengthRangeBar.addEventListener("input", () => {
     lengthInput.value = lengthRangeBar.value;
 });
+
 lengthInput.addEventListener("input", () => {
     lengthRangeBar.value = lengthInput.value;
 });
@@ -146,10 +147,50 @@ passTypesRadios[2].addEventListener("change", () => {
 
 // copy password
 const copyBtn = document.querySelector("#copy");
+const copiedInfo = document.querySelector("#copy span")
 copyBtn.addEventListener("click", () => {
     const copyInput = document.querySelector("#generatedPassField");
-    navigator.clipboard.writeText(copyInput.value)
+    navigator.clipboard.writeText(copyInput.value);
+    copiedInfo.classList.toggle("active");
+    setTimeout(() => {
+        copiedInfo.classList.toggle("active");
+    }, 800)
 });
+
+// rotate copy button
+const regeneradeBtn = document.querySelector("#regenerate");
+regeneradeBtn.addEventListener("click", () => {
+    regeneradeBtn.animate(
+        [{transform: "rotate(0)"}, {transform: "rotate(180deg)"}, ],
+        {iterations: 1, duration: 200, timingFunction: " cubic-bezier(0.7, 0, 0.3, 1)"});
+});
+
+// defining password strength
+function checkPassStrength() {
+    let passLength = passwordDisplay.value.length;    
+    const strengthBar = document.querySelector(".strength-bar span");
+    
+    if(passLength <= 3){
+        strengthBar.style.background = "var(--passstrengthBarColor__veryWeak)";
+        strengthBar.style.width = "0%";
+    } else if(passLength <= 6) {
+        strengthBar.style.background = "var(--passstrengthBarColor__weak)";
+        strengthBar.style.width = "25%";
+    } else if(passLength <= 8) {
+        strengthBar.style.background = "var(--passstrengthBarColor__average)";
+        strengthBar.style.width = "50%";
+    } else if(passLength <= 10) {
+        strengthBar.style.background = "var(--passstrengthBarColor__strong)";
+        strengthBar.style.width = "75%";
+    } else if(passLength >= 11) {
+        strengthBar.style.background = "var(--passstrengthBarColor__veryStrong)";
+        strengthBar.style.width = "100%";
+    }
+}
+
+const passwordDisplay = document.querySelector("#generatedPassField");
+passwordDisplay.addEventListener("input", checkPassStrength);
+
 
 window.onload = function() {
     const regeneradeBtn = document.querySelector("#regenerate");
@@ -160,14 +201,14 @@ window.onload = function() {
         let currentPass = new Password();
         const passwordDisplay = document.querySelector("#generatedPassField");
         passwordDisplay.value = currentPass.generate();
+        checkPassStrength();
     }
 
     showPass();
+    checkPassStrength();
 
     regeneradeBtn.addEventListener("click", showPass);
     passLength.forEach( el => el.addEventListener("input", showPass));
     preferences.forEach( el => el.addEventListener("change", showPass));
-
-    
 }
 

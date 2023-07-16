@@ -16,6 +16,11 @@
     --mainFontSize: calc(12px + 0.390625vw);
     --borderColor: #636363;
     --settingsRadius: 2px;
+    --passstrengthBarColor__veryWeak: #BEBFC5;
+    --passstrengthBarColor__weak: #A91101;
+    --passstrengthBarColor__average: #FFBA00;
+    --passstrengthBarColor__strong: #4CBB17;
+    --passstrengthBarColor__veryStrong: #004225;
 }
 
 body {
@@ -55,6 +60,7 @@ main {
 }    
 
 article.password {
+    position: relative;
     width: 100%;
     background: var(--generatedInputBg);
     border-radius: var(--radius);
@@ -64,13 +70,40 @@ article.password {
     justify-content: space-between;
 }
 
+article.password .password-display-wrapper {
+    position: relative;
+}
+
 article.password input{
     width: 90%;
     padding: 0.6%;
     border: none;
     outline: none;
-    font-size: calc(var(--mainFontSize) * 150%);
+    font-size: calc(var(--mainFontSize) + 45%);
     font-weight: 600;
+}
+
+article.password .strength-bar {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    bottom: 0;
+    height: 12%;
+    width: 100%;
+    background: var(--passstrengthBarColor__veryWeak);
+    border-radius: 0 0 var(--radius) var(--radius);
+}
+
+article.password .strength-bar span {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 0;
+    background: var(--passstrengthBarColor__weak);
+    border-radius: 0 0 var(--radius) var(--radius);
+    transition: width 0.4s ease;
 }
 
 article.password .buttons-wrapper {
@@ -78,8 +111,9 @@ article.password .buttons-wrapper {
     display: flex;
 }
 
-article.password .buttons-wrapper button {
+article.password .buttons-wrapper button{
     position: relative;
+    z-index: 1;
     height: 100%;
     width: 50%;
     background: none;
@@ -94,6 +128,24 @@ article.password .buttons-wrapper button {
 
 article.password .buttons-wrapper button:hover {
     opacity: 0.95;
+}
+
+.buttons-wrapper span {
+    display: none;
+}
+
+.buttons-wrapper span.active {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: -100%;
+    left: 100%;
+    background: var(--mainFontColor);
+    border-radius: var(--radius);
+    padding: 20%;
+    color: white;
+    font-size: 1rem;
+    transition: display 500ms ease-out;
 }
 
 article.preferences {
@@ -168,6 +220,35 @@ article.preferences .setting-wrapper label {
     cursor: pointer;
 }
 
-article.preferences .setting-wrapper input:disabled label{
-    opacity: 0.5;
+article.preferences .setting-wrapper input:disabled + label{
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 1024px) {
+    article.preferences section.pass-length {
+        width: 100%;
+    }
+
+    article.preferences {
+        justify-content: space-evenly;
+    }
+
+    article.preferences section:last-child {
+        margin-left: 20%;
+    }
+
+    article.preferences section:nth-last-child(-n + 2) {
+        margin-top: 4%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    article.preferences {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    article.preferences section:last-child {
+        margin-left: 0;
+    }
 }
